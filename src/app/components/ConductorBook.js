@@ -1,14 +1,14 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import supabase from "../utils/supabase";
 import { useDispatch, useSelector } from "react-redux";
-import { addPeople } from "../utils/userslice"; // Assuming userslice.js is in the same directory
+import { addPeople } from "../utils/userslice"; 
 
-const Conductor_book = () => {
+const ConductorBook = () => { // Renamed component to follow camelCase convention
   const dispatch = useDispatch();
   const peopleCount = useSelector((state) => state.user.people);
 
-  const [pickup, setPickup] = useState("");
+  const [pickup, setPickup] = useState("S1");
   const [destination, setDestination] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -45,8 +45,8 @@ const Conductor_book = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center pt-36">
-      <h1 className="mb-4 text-3xl font-bold">Ticket Booking</h1>
+    <div className="flex flex-col items-center justify-center bg-white pt-36"> {/* Changed background color to white */}
+      <h1 className="mb-4 text-3xl font-bold text-black">Ticket Booking</h1> {/* Changed font color to black */}
       <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
         <div className="flex flex-col items-center text-xl">
           <label htmlFor="destination" className="text-lg">Select Destination:</label>
@@ -89,11 +89,10 @@ const Conductor_book = () => {
           </select>
         </div>
         <button
-  type="submit"
-  className={`bg-gradient-to-t from-blue-500 to-blue-600 shadow-xl text-white py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-  disabled={isSubmitting}
->
-  {isSubmitting ? 'Submitting...' : ''}
+          type="submit"
+          className={`bg-gradient-to-t from-blue-500 to-blue-600 shadow-xl text-white py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Submitting..." : "Book Ticket"}
         </button>
       </form>
@@ -101,4 +100,4 @@ const Conductor_book = () => {
   );
 };
 
-export default Conductor_book;
+export default ConductorBook;
